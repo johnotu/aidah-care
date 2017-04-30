@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const config = require('config');
-const aidahCare = express()
+const aidahCare = express();
+const database = require('./utils/database.json')
 
 const token = process.env.FB_VERIFY_TOKEN
 const access = process.env.FB_ACCESS_TOKEN
@@ -58,7 +59,7 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
-  console.log("Received message for user %d and page %d at %d with message:", 
+  console.log("Received message for user %d and page %d at %d with message:",
     senderID, recipientID, timeOfMessage);
   console.log(JSON.stringify(message));
 
@@ -75,6 +76,9 @@ function receivedMessage(event) {
       case 'generic':
         sendGenericMessage(senderID);
         break;
+			case 'begin':
+					beginDialog(senderID);
+					break;
 
       default:
         sendTextMessage(senderID, messageText);
@@ -109,15 +113,81 @@ function callSendAPI(messageData) {
       var recipientId = body.recipient_id;
       var messageId = body.message_id;
 
-      console.log("Successfully sent generic message with id %s to recipient %s", 
+      console.log("Successfully sent generic message with id %s to recipient %s",
         messageId, recipientId);
     } else {
       console.error("Unable to send message.");
       console.error(response);
       console.error(error);
     }
-  });  
+  });
 }
+
+function receivedPostback(event) {
+  var senderID = event.sender.id;
+  var recipientID = event.recipient.id;
+  var timeOfPostback = event.timestamp;
+
+  // The 'payload' param is a developer-defined field which is set in a postback
+  // button for Structured Messages.
+  var payload = event.postback.payload;
+
+  console.log("Received postback for user %d and page %d with payload '%s' " +
+    "at %d", senderID, recipientID, payload, timeOfPostback);
+
+  // When a postback is called, we'll send a message back to the sender to
+  // let them know it was successful
+  sendTextMessage(senderID, "Postback called");
+}
+
+function sendQuickReply (recipientID, text, quickReplies,callback){
+     var messageData = {
+         recipient: {
+             id: recipientID
+         },
+         message: {
+             text: text,
+             quick_replies: quickReplies
+         }
+     };
+     callSendAPI(messageData, callback);
+ }
+
+ function quickReplies(array, title, payload){
+     array.push(
+         {
+             content_type: 'text',
+             title: title,
+             payload: payload
+         }
+     );
+ }
+
+function beginDialog(recipientID){
+     var qrArray = [];
+     quickReplies(qrArray, 'Bruise', 'bruise_cuts');
+     quickReplies(qrArray, 'Burns', 'burns');
+     quickReplies(qrArray, 'Bites & Stings', 'bites&stings');
+     quickReplies(qrArray, 'Choking', 'choking');
+     quickReplies(qrArray, 'Diarrhea', 'diarrhea');
+     quickReplies(qrArray, 'Poisoning', 'poisoning');
+     quickReplies(qrArray, 'Scalds', 'scalds');
+     quickReplies(qrArray, 'Sex Injury', 'sexinjury');
+     quickReplies(qrArray, 'Sprain', 'sprain');
+
+     var text = 'Kindly choose from below to continue?';
+     sendQuickReply(recipientID, text, qrArray);
+ }
+
+function selectfirsAidType(senderID, payload){
+     var qrArray = [];
+     var arr = database.firstAid[payload].list;
+     for(var i=0; i<arr.length; i++){
+         quickReplies(qrArray, arr[i].title, arr[i].payload);
+     }
+     var text = 'what is the situation?';
+     sendQuickReply(senderID, text, qrArray);
+ }
 
 function sendGenericMessage(recipientId) {
   var messageData = {
@@ -132,7 +202,7 @@ function sendGenericMessage(recipientId) {
           elements: [{
             title: "rift",
             subtitle: "Next-generation virtual reality",
-            item_url: "https://www.oculus.com/en-us/rift/",               
+            item_url: "https://www.oculus.com/en-us/rift/",
             image_url: "http://messengerdemo.parseapp.com/img/rift.png",
             buttons: [{
               type: "web_url",
@@ -146,7 +216,7 @@ function sendGenericMessage(recipientId) {
           }, {
             title: "touch",
             subtitle: "Your Hands, Now in VR",
-            item_url: "https://www.oculus.com/en-us/touch/",               
+            item_url: "https://www.oculus.com/en-us/touch/",
             image_url: "http://messengerdemo.parseapp.com/img/touch.png",
             buttons: [{
               type: "web_url",
@@ -161,7 +231,7 @@ function sendGenericMessage(recipientId) {
         }
       }
     }
-  };  
+  };
 
   callSendAPI(messageData);
 }

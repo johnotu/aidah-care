@@ -1,0 +1,158 @@
+{
+    "firstAid": {
+      "cuts": {
+          "list": [
+              {
+                  "title": "Deep",
+                  "content": "1. Elevate the injured part \n2. Wash your hands with soap and clean water \n3. With a clean cloth, press directly on the wound (for about 20 mins) to stop bleeding \n4. Wash the skin around the wound with clean cool water \n5.Be careful to clean out any dirt in the wound using tweezers or clean cloth/gauze \n6. Place a piece of clean lightly on the cut \n7.Seek medical attention",
+                  "cautions": "CAUTION \nDo not use a tourniquet, rope, or wire to stop the bleeding, Never use dirt, kerosene, lime, or coffee to stop bleeding, When bleeding or injury is severe, raise the feet and lower the head to prevent shock, Keep blood from getting into any cuts or sores on your skin.",
+                  "payload": "returnedDeep"
+              },
+              {
+                  "title": "Small",
+                  "content": "Then place a piece of clean gauze or cloth over the top. It should be light enough so that the air can get to the wound and help it to heal. Change the gauze or cloth every day and look for signs of infection (see p. 88). If you have a dirty wound or a puncture wound, and have never had a tetanus immunization",
+                  "cautions": "NEVER put alcohol, tincture of iodine, or Merthiolate directly into a wound; doing so will damage the flesh and make healing slower.",
+                  "payload": "returnedSmall"
+              },
+              {
+                  "title": "Shallow",
+                  "content": "Then place a piece of clean gauze or cloth over the top. It should be light enough so that the air can get to the wound and help it to heal. Change the gauze or cloth every day and look for signs of infection (see p. 88). If you have a dirty wound or a puncture wound, and have never had a tetanus immunization",
+                  "cautions": "",
+                  "payload": "returnedShalow"
+              }
+          ]
+      },
+      "bruise": {
+          "list": [
+              {
+                  "title": "",
+                  "content": "Bruises: \n(When blood vessels under the skin tear or rupture, most often from a bump or fall) \n1.      Ensure that the bruised area is well protected \n2.      Elevate above heart level if possible \n3.      Apply ice to reduce swelling \n4.      An elastic wrap around the bruised area will also reduce swelling \n5.      Gently massage the bruised area to relive pain \n6.      If the bruise is causing pain, take an over-the-counter pain reliever",
+                  "cautions": "Caution: The use of smoke or tobacco slows the healing of bruises.",
+                  "payload": "returnedDeep"
+              }
+          ]
+      },
+        "burns": {
+            "list": [
+                {
+                    "title": "Blisters",
+                    "content": "",
+                    "cautions": "",
+                    "payload": "returnedBlisters"
+                },
+                {
+                    "title": "No Blisters",
+                    "content": "",
+                    "cautions": "",
+                    "payload": "returnedNoBlisters"
+                },
+                {
+                    "title": "Exposed Flesh",
+                    "content": "",
+                    "cautions": "",
+                    "payload": "returnedExposedFlesh"
+                }
+            ]
+        },
+        "sexinjury": {
+            "list": [
+                {
+                    "title": "Vaginal Tearing",
+                    "content": "Vaginal tearing: Happens when the vagina is too dry during sex. It usually heals on its own but to prevent it, use lubricants before the act. If it keeps bleeding, seek medical attention. \n Stuck condom: Happens when a condom is stuck in the vagina. The best course of action is to wait for 10 to 15 minutes after sex, then use two fingers to fish out the item. If you are unable to get it out, seek the services of a doctor.",
+                    "cautions": "Do not use any other thing apart from your fingers to try to get it out.",
+                    "payload": ""
+                },
+                {
+                    "title": "Carpet Burn",
+                    "content": "Carpet burns: \nHappens when the knee or elbow is scrapped while having sex on the floor. \n1.    Wash infected area with cool water and antibacterial soap \n2.    Apply an anti-bacterial cream \n3.    Cover lightly with a bandage",
+                    "cautions": "",
+                    "payload": ""
+                },
+                {
+                    "title": "Pull Muscle",
+                    "content": "Pulled muscles: \nQuite common and usually caused by endorphins released during sex. \n1.    Take an over-the-counter anti-inflammatory drug \n2.    Elevate the affected part if possible \n3.    Apply cold compress to reduce the swelling \n4.    Seek medical attention if condition does not improve after 2 days",
+                    "cautions": "",
+                    "payload": ""
+                }
+            ]
+        },
+        "sprain&strain": {
+            "list": [
+                {
+                    "title": "",
+                    "content": " (Abnormal stretching or tearing of a muscle is a strain, stretching or tearing of a ligament that supports a joint is a sprain) \nMost times it is impossible to detect whether an injury (especially on the hand or foot) is a sprain or a strain, in which case an x-ray helps. \n1. Wrap the injured part with an elastic bandage to reduce swelling \n2. Elevated the injured part \n3. Wet clothes or ice packs should be placed over the injured part \n4. take an over-the-counter pain reliever \n5. Seek medical attention",
+                    "cautions": "Never rub or massage a sprain or broken bone",
+                    "payload": "returnedsprain"
+                }
+            ]
+        },
+        "poisoning": {
+            "list": [
+                {
+                    "title": "Concious",
+                    "content": "",
+                    "cautions": "",
+                    "payload": ""
+                },
+                {
+                    "title": "Unconcious",
+                    "content": "",
+                    "cautions": "",
+                    "payload": "returnedUnconcious"
+                }
+            ]
+        },
+        "choking":{
+            "list": [
+                {
+                    "title": "",
+                    "content": "(Happens when a foreign object is lodged in the throat or windpipe blocking flow of air) \n1.    Stand behind the person and wrap your arms around the waist \n2.    Put your fist against the belly above the navel and below the ribs \n3.    Press into the belly with a sudden strong upward jerk \n4.    Repeat several times if necessary \nIf the victim is way bigger than you are \n1.    Lay the person on the back \n2.    Tilt the  head to one side \n3.    Sit over the person with the heel of your lower hand on the belly between navel and ribs. \n    Make a quick, strong upward push \n5.    Repeat several times if necessary \nTo dislodge a foreign item from your throat \n1.    Place a fist slightly above your navel \n2.    Grasp your fist with the other hand and bend over a hard surface. \n3.    Shove your fist inward and upward. \n4.    Repeat if necessary \nIf the victim is unconscious \n1.    Lower the person on the back onto the floor \n2.    Clear the airway: If a blockage is visible at the back of the throat, reach a finger to pull it out. Be careful not to push it further back \n3.    Conduct Chest compressions and mouth-to-mouth breathing \n4.    Seek medical attention immediately",
+                    "cautions": "",
+                    "payload": ""
+                }
+            ]
+        },
+				"scalds":{
+						"list": [
+								{
+										"title": "",
+										"content": "",
+										"cautions": "",
+                    "payload": ""
+								},
+								{
+										"title": "",
+										"content": "",
+										"cautions": "",
+                    "payload": ""
+								}
+						]
+				},
+				"diarrhea":{
+						"list": [
+								{
+										"title": "Diarrhea",
+										"content": "1. Take lots of liquids to avoid dehydration \n2. Liquid foods such as broth, or soft foods like mashed potato should be taken for energy \n3. Seek medical attention",
+										"cautions": "Caution: \nDo not eat or drink laxative or purge, fatty and greasy foods, alcoholic beverages or highly seasoned foods",
+                    "payload": "returnedDiarhea"
+								}
+						]
+				},
+				"bites&stings":{
+						"list": [
+								{
+										"title": "",
+										"content": "",
+										"cautions": "",
+                    "payload": ""
+								},
+								{
+										"title": "",
+										"content": "",
+										"cautions": "",
+                    "payload": ""
+								}
+						]
+				}
+    }
+}

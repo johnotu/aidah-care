@@ -1,0 +1,19 @@
+{
+  "name": "aidah-care",
+  "version": "1.0.0",
+  "description": "a bot that provides relevant information on first aid",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "fred & john",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "config": "^1.25.1",
+    "ejs": "^2.5.6",
+    "engines": "^0.4.0",
+    "express": "^4.15.2",
+    "request": "^2.81.0"
+  }
+}

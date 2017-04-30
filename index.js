@@ -51,11 +51,6 @@ aidahCare.post('/webhook', function (req, res) {
     res.sendStatus(200);
   }
 });
-  
-function receivedMessage(event) {
-  // Putting a stub for now, we'll expand it in the following steps
-  console.log("Message data: ", event.message);
-}
 
 function receivedMessage(event) {
   var senderID = event.sender.id;

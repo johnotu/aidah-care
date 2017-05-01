@@ -157,7 +157,7 @@ function receivedPostback(event) {
   console.log("Received postback for user %d and page %d with payload '%s' " +
     "at %d", senderID, recipientID, payload, timeOfPostback);
 		switch(payload){
-			case 'begin':
+			case 'Get Started':
 				getUserProfile(senderID);
 				var msg = `Hello ${userProfile.first_name}! welcome to Aidah Care.`;
 					sendTextMessage(senderID, msg);

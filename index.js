@@ -1,9 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
+const database = require('./utils/database.json');
 const config = require('config');
 const aidahCare = express();
-const database = require('./utils/database.json')
+
 
 const token = process.env.FB_VERIFY_TOKEN
 const access = process.env.FB_ACCESS_TOKEN
@@ -131,10 +132,62 @@ function receivedPostback(event) {
   // The 'payload' param is a developer-defined field which is set in a postback
   // button for Structured Messages.
   var payload = event.postback.payload;
+	var messagePayload = message.quick_reply.payload;
+	var quickReply = message.quick_reply;
 
   console.log("Received postback for user %d and page %d with payload '%s' " +
     "at %d", senderID, recipientID, payload, timeOfPostback);
+	if (messagePayload){
+  console.log(messagePayload);
+  switch (messagePayload) {
 
+    case 'cuts':
+      selectfirsAidType(senderID, 'cuts');
+      break;
+      case 'returnedDeep':
+        var content = database.firstAid.cuts.list[0].content;
+        var cautions = database.firstAid.cuts.list[0].cautions;
+        	sendTextMessage(senderID, content);
+          sendTextMessage(senderID, cautions);
+        break;
+    case 'burns':
+      selectfirsAidType(senderID, 'burns');
+      break;
+    case 'diarrhea':
+        sendTextMessage(senderID, 'diarrhea');
+        break;
+  }
+}
+
+
+function callSendAPI(messageData,callback) {
+  request({
+    uri: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: { access_token: PAGE_ACCESS_TOKEN },
+    method: 'POST',
+    json: messageData
+
+  }, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var recipientId = body.recipient_id;
+      var messageId = body.message_id;
+
+      if (messageId) {
+        console.log("Successfully sent message with id %s to recipient %s",
+          messageId, recipientId);
+      } else {
+      console.log("Successfully called Send API for recipient %s",
+        recipientId);
+      }
+    } else {
+      console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
+    }
+    if(typeof(callback) === "function" ){
+        callback();
+    }
+
+  });
+}
   // When a postback is called, we'll send a message back to the sender to
   // let them know it was successful
   sendTextMessage(senderID, "Postback called");
@@ -175,7 +228,7 @@ function beginDialog(recipientID){
      quickReplies(qrArray, 'Sex Injury', 'sexinjury');
      quickReplies(qrArray, 'Sprain', 'sprain');
 
-     var text = 'Kindly choose from below to continue?';
+     var text = 'Kindly choose from below to continue. Please type begin to start over';
      sendQuickReply(recipientID, text, qrArray);
  }
 

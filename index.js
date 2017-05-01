@@ -183,10 +183,10 @@ function receivedPostback(event) {
 
   // When a postback is called, we'll send a message back to the sender to
   // let them know it was successful
-  sendTextMessage(senderID, "Postback called");
-}
+//   sendTextMessage(senderID, "Postback called");
+// }
 
-function sendQuickReply (recipientID, text, quickReplies){
+function sendQuickReply(recipientID, text, quickReplies){
      var messageData = {
          recipient: {
              id: recipientID

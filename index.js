@@ -157,12 +157,12 @@ function receivedPostback(event) {
   console.log("Received postback for user %d and page %d with payload '%s' " +
     "at %d", senderID, recipientID, payload, timeOfPostback);
 		switch(payload){
-			case 'Get Started':
+			case 'begin':
 				getUserProfile(senderID);
 				var msg = `Hello ${userProfile.first_name}! welcome to Aidah Care.`;
 					sendTextMessage(senderID, msg);
 					beginDialog(senderID);
-
+					break;
     	case 'cuts':
       	selectfirsAidType(senderID, 'cuts');
       	break;

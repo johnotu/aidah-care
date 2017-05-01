@@ -70,6 +70,31 @@ function receivedMessage(event) {
 
   var messageText = message.text;
   var messageAttachments = message.attachments;
+	var quickReply = message.quick_reply;
+	var messagePayload = message.quick_reply.payload;
+
+	if (messagePayload){
+  console.log(messagePayload);
+  switch (messagePayload) {
+
+    case 'cuts':
+      selectfirsAidType(senderID, 'cuts');
+      break;
+      case 'returnedDeep':
+        var content = database.firstAid.cuts.list[0].content;
+        var cautions = database.firstAid.cuts.list[0].cautions;
+        sendTextMessage(senderID, content, function(){
+          sendTextMessage(senderID, cautions,null);
+        });
+        break;
+    case 'burns':
+      selectfirsAidType(senderID, 'burns');
+      break;
+    case 'diarrhea':
+        sendTextMessage(senderID, 'diarrhea');
+        break;
+  }
+}
 
   if (messageText) {
 
@@ -132,27 +157,7 @@ function callSendAPI(messageData,callback) {
 
   });
 }
-// function callSendAPI(messageData, callback) {
-//   request({
-//     uri: 'https://graph.facebook.com/v2.6/me/messages',
-//     qs: { access_token: access },
-//     method: 'POST',
-//     json: messageData
-//
-//   }, function (error, response, body) {
-//     if (!error && response.statusCode == 200) {
-//       var recipientId = body.recipient_id;
-//       var messageId = body.message_id;
-//
-//       console.log("Successfully sent generic message with id %s to recipient %s",
-//         messageId, recipientId);
-//     } else {
-//       console.error("Unable to send message.");
-//       console.error(response);
-//       console.error(error);
-//     }
-//   });
-// }
+
 
 //get users profile
 let userProfile;
@@ -194,24 +199,24 @@ function receivedPostback(event) {
 						beginDialog(senderID);
 					});
 					break;
-			case 'cuts':
-	      selectfirsAidType(senderID, 'cuts');
-	      break;
-		      case 'returnedDeep':
-		        var content = database.firstAid.cuts.list[0].content;
-		        var cautions = database.firstAid.cuts.list[0].cautions;
-		        sendTextMessage(senderID, content, function(){
-		          sendTextMessage(senderID, cautions)
-		        });
-		        break;
-	    case 'choking':
-				var chokingContent = database.firstAid.choking.list[0].content;
-	      	sendTextMessage(senderID, chokingContent);
-	      break;
-	    case 'diarrhea':
-					var diaContent = database.firstAid.diarrhea.list[0].content;
-	        sendTextMessage(senderID, diaContent);
-	        break;
+			// case 'cuts':
+	    //   selectfirsAidType(senderID, 'cuts');
+	    //   break;
+		  //     case 'returnedDeep':
+		  //       var content = database.firstAid.cuts.list[0].content;
+		  //       var cautions = database.firstAid.cuts.list[0].cautions;
+		  //       sendTextMessage(senderID, content, function(){
+		  //         sendTextMessage(senderID, cautions)
+		  //       });
+		  //       break;
+	    // case 'choking':
+			// 	var chokingContent = database.firstAid.choking.list[0].content;
+	    //   	sendTextMessage(senderID, chokingContent);
+	    //   break;
+	    // case 'diarrhea':
+			// 		var diaContent = database.firstAid.diarrhea.list[0].content;
+	    //     sendTextMessage(senderID, diaContent);
+	    //     break;
   }
 }
 

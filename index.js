@@ -191,17 +191,17 @@ function receivedPostback(event) {
 				getUserProfile(senderID);
 				var msg = `Hello ${userProfile.first_name}! welcome to Aidah Care.`;
 					sendTextMessage(senderID, msg, function(){
-						beginDialog(senderID)
+						beginDialog(senderID);
 					});
 					break;
 			case 'cuts':
-	      selectfirsAidType(senderID, 'cuts');
+	      selectfirsAidType(recipientID, 'cuts');
 	      break;
 		      case 'returnedDeep':
 		        var content = database.firstAid.cuts.list[0].content;
 		        var cautions = database.firstAid.cuts.list[0].cautions;
 		        sendTextMessage(senderID, content, function(){
-		          sendTextMessage(senderID, cautions,null)
+		          sendTextMessage(senderID, cautions)
 		        });
 		        break;
 	    case 'choking':

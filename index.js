@@ -194,7 +194,24 @@ function receivedPostback(event) {
 						beginDialog(senderID)
 					});
 					break;
-
+			case 'cuts':
+	      selectfirsAidType(senderID, 'cuts');
+	      break;
+		      case 'returnedDeep':
+		        var content = database.firstAid.cuts.list[0].content;
+		        var cautions = database.firstAid.cuts.list[0].cautions;
+		        sendTextMessage(senderID, content, function(){
+		          sendTextMessage(senderID, cautions,null)
+		        });
+		        break;
+	    case 'choking':
+				var chokingContent = database.firstAid.choking.list[0].content;
+	      	sendTextMessage(senderID, chokingContent);
+	      break;
+	    case 'diarrhea':
+					var diaContent = database.firstAid.diarrhea.list[0].content;
+	        sendTextMessage(senderID, diaContent);
+	        break;
   }
 }
 

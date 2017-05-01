@@ -77,7 +77,7 @@ function receivedMessage(event) {
       case 'generic':
         sendGenericMessage(senderID);
         break;
-			case 'begin':
+			case 'hey':
 					beginDialog(senderID);
 					break;
 
@@ -124,6 +124,27 @@ function callSendAPI(messageData) {
   });
 }
 
+//get users profile
+let userProfile;
+
+function getUserProfile(senderID){
+	 var options = {
+	 url: 'https://graph.facebook.com/v2.6/' + senderID + '?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=' + token
+};
+
+function callback(error, response, body) {
+	 if (!error && response.statusCode == 200) {
+			 userProfile = JSON.parse(body);
+			 console.log(body, 'user profile obtained successful');
+	 } else{
+		 console.error('failed to obtained user profile', body.error);
+	 }
+}
+
+request(options, callback);
+
+}
+
 function receivedPostback(event) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
@@ -132,28 +153,29 @@ function receivedPostback(event) {
   // The 'payload' param is a developer-defined field which is set in a postback
   // button for Structured Messages.
   var payload = event.postback.payload;
-	var messagePayload = message.quick_reply.payload;
-	var quickReply = message.quick_reply;
 
   console.log("Received postback for user %d and page %d with payload '%s' " +
     "at %d", senderID, recipientID, payload, timeOfPostback);
-	if (messagePayload){
-  console.log(messagePayload);
-  switch (messagePayload) {
+		switch(payload){
+			case 'begin':
+				getUserProfile(senderID);
+				var msg = `Hello ${userProfile.first_name}! welcome to Aidah Care.`;
+					sendTextMessage(senderID, msg);
+					beginDialog(senderID);
 
-    case 'cuts':
-      selectfirsAidType(senderID, 'cuts');
-      break;
-      case 'returnedDeep':
-        var content = database.firstAid.cuts.list[0].content;
-        var cautions = database.firstAid.cuts.list[0].cautions;
-        	sendTextMessage(senderID, content);
-          sendTextMessage(senderID, cautions);
-        break;
-    case 'burns':
-      selectfirsAidType(senderID, 'burns');
-      break;
-    case 'diarrhea':
+    	case 'cuts':
+      	selectfirsAidType(senderID, 'cuts');
+      	break;
+      	case 'returnedDeep':
+        	var content = database.firstAid.cuts.list[0].content;
+        	var cautions = database.firstAid.cuts.list[0].cautions;
+        		sendTextMessage(senderID, content);
+          	sendTextMessage(senderID, cautions);
+        	break;
+    	case 'burns':
+      	selectfirsAidType(senderID, 'burns');
+      	break;
+    	case 'diarrhea':
         sendTextMessage(senderID, 'diarrhea');
         break;
   }
@@ -218,6 +240,7 @@ function sendQuickReply (recipientID, text, quickReplies,callback){
 
 function beginDialog(recipientID){
      var qrArray = [];
+		 quickReplies(qrArray, 'Cuts', 'cuts');
      quickReplies(qrArray, 'Bruise', 'bruise_cuts');
      quickReplies(qrArray, 'Burns', 'burns');
      quickReplies(qrArray, 'Bites & Stings', 'bites&stings');

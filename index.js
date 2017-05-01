@@ -131,7 +131,7 @@ let userProfile;
 
 function getUserProfile(senderID){
 	 var options = {
-	 url: 'https://graph.facebook.com/v2.6/' + senderID + '?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=' + token
+	 url: 'https://graph.facebook.com/v2.6/' + senderID + '?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=' + access
 };
 
 function callback(error, response, body) {

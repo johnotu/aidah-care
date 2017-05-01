@@ -77,7 +77,7 @@ function receivedMessage(event) {
       case 'generic':
         sendGenericMessage(senderID);
         break;
-			case 'hey':
+			case 'begin':
 					beginDialog(senderID);
 					break;
 
@@ -157,7 +157,7 @@ function receivedPostback(event) {
   console.log("Received postback for user %d and page %d with payload '%s' " +
     "at %d", senderID, recipientID, payload, timeOfPostback);
 		switch(payload){
-			case 'begin':
+			case 'Get Started':
 				getUserProfile(senderID);
 				var msg = `Hello ${userProfile.first_name}! welcome to Aidah Care.`;
 					sendTextMessage(senderID, msg);
@@ -182,7 +182,7 @@ function receivedPostback(event) {
 }
 
 
-function callSendAPI(messageData,callback) {
+function callSendAPI(messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
     qs: { access_token: PAGE_ACCESS_TOKEN },
@@ -204,9 +204,9 @@ function callSendAPI(messageData,callback) {
     } else {
       console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
     }
-    if(typeof(callback) === "function" ){
-        callback();
-    }
+    // if(typeof(callback) === "function" ){
+    //     callback();
+    // }
 
   });
 }
@@ -215,7 +215,7 @@ function callSendAPI(messageData,callback) {
   sendTextMessage(senderID, "Postback called");
 }
 
-function sendQuickReply (recipientID, text, quickReplies,callback){
+function sendQuickReply (recipientID, text, quickReplies){
      var messageData = {
          recipient: {
              id: recipientID

@@ -195,7 +195,7 @@ function receivedPostback(event) {
 					});
 					break;
 			case 'cuts':
-	      selectfirsAidType(recipientID, 'cuts');
+	      selectfirsAidType(senderID, 'cuts');
 	      break;
 		      case 'returnedDeep':
 		        var content = database.firstAid.cuts.list[0].content;

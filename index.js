@@ -104,7 +104,7 @@ function sendTextMessage(recipientId, messageText) {
   callSendAPI(messageData, callback);
 }
 
-function callSendAPI(messageData, callback) {
+function callSendAPI(messageData,callback) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
     qs: { access_token: access },
@@ -116,15 +116,43 @@ function callSendAPI(messageData, callback) {
       var recipientId = body.recipient_id;
       var messageId = body.message_id;
 
-      console.log("Successfully sent generic message with id %s to recipient %s",
-        messageId, recipientId);
+      if (messageId) {
+        console.log("Successfully sent message with id %s to recipient %s",
+          messageId, recipientId);
+      } else {
+      console.log("Successfully called Send API for recipient %s",
+        recipientId);
+      }
     } else {
-      console.error("Unable to send message.");
-      console.error(response);
-      console.error(error);
+      console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
     }
+    if(typeof(callback) === "function" ){
+        callback();
+    }
+
   });
 }
+// function callSendAPI(messageData, callback) {
+//   request({
+//     uri: 'https://graph.facebook.com/v2.6/me/messages',
+//     qs: { access_token: access },
+//     method: 'POST',
+//     json: messageData
+//
+//   }, function (error, response, body) {
+//     if (!error && response.statusCode == 200) {
+//       var recipientId = body.recipient_id;
+//       var messageId = body.message_id;
+//
+//       console.log("Successfully sent generic message with id %s to recipient %s",
+//         messageId, recipientId);
+//     } else {
+//       console.error("Unable to send message.");
+//       console.error(response);
+//       console.error(error);
+//     }
+//   });
+// }
 
 //get users profile
 let userProfile;

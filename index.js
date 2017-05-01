@@ -68,6 +68,32 @@ function receivedMessage(event) {
 
   var messageText = message.text;
   var messageAttachments = message.attachments;
+	var quickReply = message.quick_reply;
+	var messagePayload = message.quick_reply.payload;
+
+	if (messagePayload) {
+		switch (messagePayload) {
+			case 'cuts':
+				selectfirsAidType(senderID, 'cuts');
+				break;
+				case 'returnedDeep':
+					var content = database.firstAid.cuts.list[0].content;
+					var cautions = database.firstAid.cuts.list[0].cautions;
+						sendTextMessage(senderID, content);
+						sendTextMessage(senderID, cautions);
+					break;
+			case 'burns':
+				selectfirsAidType(senderID, 'burns');
+				break;
+			case 'diarrhea':
+				sendTextMessage(senderID, 'diarrhea');
+				break;
+
+				break;
+			default:
+
+		}
+	}
 
   if (messageText) {
 
@@ -163,21 +189,6 @@ function receivedPostback(event) {
 					sendTextMessage(senderID, msg);
 					beginDialog(senderID);
 					break;
-    	case 'cuts':
-      	selectfirsAidType(senderID, 'cuts');
-      	break;
-      	case 'returnedDeep':
-        	var content = database.firstAid.cuts.list[0].content;
-        	var cautions = database.firstAid.cuts.list[0].cautions;
-        		sendTextMessage(senderID, content);
-          	sendTextMessage(senderID, cautions);
-        	break;
-    	case 'burns':
-      	selectfirsAidType(senderID, 'burns');
-      	break;
-    	case 'diarrhea':
-        sendTextMessage(senderID, 'diarrhea');
-        break;
   }
 }
 

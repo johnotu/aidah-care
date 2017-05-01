@@ -196,7 +196,7 @@ function sendQuickReply (recipientID, text, quickReplies){
              quick_replies: quickReplies
          }
      };
-     callSendAPI(messageData, callback);
+     callSendAPI(messageData);
  }
 
  function quickReplies(array, title, payload){

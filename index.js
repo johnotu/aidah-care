@@ -91,7 +91,7 @@ function receivedMessage(event) {
   }
 }
 
-function sendTextMessage(recipientId, messageText) {
+function sendTextMessage(recipientId, messageText,callback) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -203,7 +203,7 @@ function receivedPostback(event) {
 //   sendTextMessage(senderID, "Postback called");
 // }
 
-function sendQuickReply(recipientID, text, quickReplies){
+function sendQuickReply(recipientID, text, quickReplies,callback){
      var messageData = {
          recipient: {
              id: recipientID
@@ -253,7 +253,7 @@ function selectfirsAidType(senderID, payload){
      sendQuickReply(senderID, text, qrArray);
  }
 
-function sendGenericMessage(recipientId) {
+function sendGenericMessage(recipientId, callback) {
   var messageData = {
     recipient: {
       id: recipientId

@@ -39,7 +39,9 @@ aidahCare.post('/webhook', function (req, res) {
       entry.messaging.forEach(function(event) {
         if (event.message) {
           receivedMessage(event);
-        } else {
+        } else if(event.postback){
+					receivedPostback(event);
+				} else {
           console.log("Webhook received unknown event: ", event);
         }
       });
@@ -163,21 +165,7 @@ function receivedPostback(event) {
 					sendTextMessage(senderID, msg);
 					beginDialog(senderID);
 					break;
-    	case 'cuts':
-      	selectfirsAidType(senderID, 'cuts');
-      	break;
-      	case 'returnedDeep':
-        	var content = database.firstAid.cuts.list[0].content;
-        	var cautions = database.firstAid.cuts.list[0].cautions;
-        		sendTextMessage(senderID, content);
-          	sendTextMessage(senderID, cautions);
-        	break;
-    	case 'burns':
-      	selectfirsAidType(senderID, 'burns');
-      	break;
-    	case 'diarrhea':
-        sendTextMessage(senderID, 'diarrhea');
-        break;
+
   }
 }
 

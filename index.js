@@ -101,10 +101,10 @@ function sendTextMessage(recipientId, messageText) {
     }
   };
 
-  callSendAPI(messageData);
+  callSendAPI(messageData, callback);
 }
 
-function callSendAPI(messageData) {
+function callSendAPI(messageData, callback) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
     qs: { access_token: access },
@@ -162,8 +162,9 @@ function receivedPostback(event) {
 			case 'Get Started':
 				getUserProfile(senderID);
 				var msg = `Hello ${userProfile.first_name}! welcome to Aidah Care.`;
-					sendTextMessage(senderID, msg);
-					beginDialog(senderID);
+					sendTextMessage(senderID, msg, function(){
+						beginDialog(senderID)
+					});
 					break;
 
   }
@@ -184,7 +185,7 @@ function sendQuickReply(recipientID, text, quickReplies){
              quick_replies: quickReplies
          }
      };
-     callSendAPI(messageData);
+     callSendAPI(messageData, callback);
  }
 
  function quickReplies(array, title, payload){
@@ -268,7 +269,7 @@ function sendGenericMessage(recipientId) {
     }
   };
 
-  callSendAPI(messageData);
+  callSendAPI(messageData, callback);
 }
 
 aidahCare.listen(aidahCare.get('port'), function(){

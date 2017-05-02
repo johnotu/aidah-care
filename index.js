@@ -72,6 +72,8 @@ function receivedMessage(event) {
   var messageAttachments = message.attachments;
 	var quickReply = message.quick_reply;
 	var messagePayload = message.quick_reply.payload;
+	let content = database.firstAid.cuts.list[0].content;
+	let cautions = database.firstAid.cuts.list[0].cautions;
 
 	if (messagePayload){
   console.log(messagePayload);
@@ -81,14 +83,22 @@ function receivedMessage(event) {
       selectfirsAidType(senderID, 'cuts');
       break;
       case 'returnedDeep':
-        var content = database.firstAid.cuts.list[0].content;
-        var cautions = database.firstAid.cuts.list[0].cautions;
         sendTextMessage(senderID, content, function(){
           sendTextMessage(senderID, cautions,null);
         });
         break;
-    case 'burns':
-      selectfirsAidType(senderID, 'burns');
+			case 'returnedSmall':
+        sendTextMessage(senderID, content, function(){
+          sendTextMessage(senderID, cautions,null);
+				});
+				break;
+			case 'returnedShallow':
+        sendTextMessage(senderID, content, function(){
+          sendTextMessage(senderID, cautions,null);
+				});
+				break;
+    case 'bruise  ':
+      selectfirsAidType(senderID, 'bruise');
       break;
     case 'diarrhea':
         sendTextMessage(senderID, 'diarrhea');

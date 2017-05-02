@@ -18,7 +18,7 @@
                   "title": "Shallow",
                   "content": "Then place a piece of clean gauze or cloth over the top. It should be light enough so that the air can get to the wound and help it to heal. Change the gauze or cloth every day and look for signs of infection (see p. 88). If you have a dirty wound or a puncture wound, and have never had a tetanus immunization",
                   "cautions": "",
-                  "payload": "returnedShalow"
+                  "payload": "returnedShallow"
               }
           ]
       },
@@ -36,21 +36,21 @@
             "list": [
                 {
                     "title": "Blisters",
-                    "content": "",
-                    "cautions": "",
+                    "content": "Blisters: \n1. If the blisters are broken, wash gently with clean water \n2. If there is Vaseline, apply a bit on a sterile gauze and place it lightly over the burn \n3. Secure the sterile gauze with a tape \n4. Where there is no Vaseline, leave the burn uncovered \n5. Seek medical attention",
+                    "cautions": "Caution: \nDo not smear grease, butter, fat, hides, herbs on a burn. Do not break the blisters/ put ice on the burn/ apply pressure on the wound",
                     "payload": "returnedBlisters"
                 },
                 {
                     "title": "No Blisters",
-                    "content": "",
-                    "cautions": "",
+                    "content": "1. Put the burned part in cool water \n2. Cover lightly  with a sterile, non-adhesive bandage or clean cloth \n3. Take an over-the-counter pain reliever for the pain",
+                    "cautions": "Caution: \nDo not smear grease, butter, fat, hides, herbs on a burn. Do not break the blisters/ put ice on the burn/ apply pressure on the wound",
                     "payload": "returnedNoBlisters"
                 },
                 {
-                    "title": "Exposed Flesh",
-                    "content": "",
-                    "cautions": "",
-                    "payload": "returnedExposedFlesh"
+                    "title": "Deep Burn",
+                    "content": "Deep burns:  \n1. In this type of burn, the skin is exposed, there is charred flesh and the burns usually cover large areas of the body. \n2. Wrap the burned part with very clean cloth(lintless) moistened with water \n3. Seek medical attention immediately \nDeep burns can cause shock. Prevent this by \n1. Reassuring the person \n2. Give the injured person an over-the-counter pain reliever \n3. Lay flat and elevate burned area if possible. \n4. In cases of facial burn, have the person sit up",
+                    "cautions": "Caution: Do not smear grease, fat, hides, herbs on a burn. Do not break the blisters/ put ice on the burn/ apply pressure on the wound.",
+                    "payload": "returnedDeepBurn"
                 }
             ]
         },
@@ -80,8 +80,8 @@
             "list": [
                 {
                     "title": "",
-                    "content": " (Abnormal stretching or tearing of a muscle is a strain, stretching or tearing of a ligament that supports a joint is a sprain) \nMost times it is impossible to detect whether an injury (especially on the hand or foot) is a sprain or a strain, in which case an x-ray helps. \n1. Wrap the injured part with an elastic bandage to reduce swelling \n2. Elevated the injured part \n3. Wet clothes or ice packs should be placed over the injured part \n4. take an over-the-counter pain reliever \n5. Seek medical attention",
-                    "cautions": "Never rub or massage a sprain or broken bone",
+                    "content": "STRAIN and SPRAIN \n(Abnormal stretching or tearing of a muscle is a strain, stretching or tearing of a ligament that supports a joint is a sprain) \nMost times it is impossible to detect whether an injury (especially on the hand or foot) is a sprain or a strain, in which case an x-ray helps. The RICE method helps in treatment of strains and sprains. \n1. Rest: Lie in  a comfortable position \n2. Ice: Wet clothes or ice packs should be placed over the injured part \n3. Comfortable support: Wrap the injured part firmly with an elastic bandage \n4. Elevate: Elevate the injured part and support with soft cushions \n5. Take an over-the-counter pain reliever \n6. Seek medical attention",
+                    "cautions": "Caution: Never rub or massage a sprain or broken bone.",
                     "payload": "returnedsprain"
                 }
             ]
@@ -141,16 +141,16 @@
 				"bites&stings":{
 						"list": [
 								{
-										"title": "",
-										"content": "",
+										"title": "Mammals",
+										"content": "BITES and STINGS \nAnimal: \n1. Wash the wound from the bite thoroughly with soap and warm water to reduce risk of infection \n2. Raise and support the wound \n3. Dry it with clean gauze or cloth \n4. Cover lightly with a clean cloth/gauze \n5. If the wound is large or deep, apply direct pressure \n6. Secure firmly with a bandage \n7. Seek medical attention",
 										"cautions": "",
-                    "payload": ""
+                    "payload": "returnedMammals"
 								},
 								{
-										"title": "",
-										"content": "",
+										"title": "Insects",
+										"content": "Insects:(Spiders, Scorpions, Bees, Wasps, Hornets) \n1. Scrape off the insect stinger sideways with a straight-edged object like a credit card \n2. Apply ice to the area to reduce swelling \n3. Elevate the affected area if possible \n4. If there are signs of allergic reaction, seek medical attention",
 										"cautions": "",
-                    "payload": ""
+                    "payload": "returnedInsects"
 								}
 						]
 				}

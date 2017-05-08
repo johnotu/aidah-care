@@ -74,6 +74,20 @@ function receivedMessage(event) {
 	var messagePayload = message.quick_reply.payload;
 	let content = database.firstAid.cuts.list[0].content;
 	let cautions = database.firstAid.cuts.list[0].cautions;
+	let burnscontent = database.firstAid.burns.list[0].content;
+	let burnscautions = database.firstAid.burns.list[0].cautions;
+	let sexcontent = database.firstAid.sexinjury.list[0].content;
+	let sexcautions = database.firstAid.sexinjury.list[0].cautions;
+	let spraincontent = database.firstAid.sprain.list[0].content;
+	let spraincautions = database.firstAid.sprain.list[0].cautions;
+	let poisoncontent = database.firstAid.poisoning.list[0].content;
+	let poisoncautions = database.firstAid.poisoning.list[0].cautions;
+	let chokecontent = database.firstAid.choking.list[0].content;
+	let chokecautions = database.firstAid.choking.list[0].cautions;
+	let diarrheacontent = database.firstAid.diarrhea.list[0].content;
+	let diarrheacautions = database.firstAid.diarrhea.list[0].cautions;
+	let bitescontent = database.firstAid.bites.list[0].content;
+	let bitescautions = database.firstAid.bites.list[0].cautions;
 
 	if (messagePayload){
   console.log(messagePayload);
@@ -98,11 +112,89 @@ function receivedMessage(event) {
 				});
 				break;
     case 'bruise  ':
-      selectfirsAidType(senderID, 'bruise');
+			var bruisecontent = database.firstAid.bruise.list[0].content;
+			var bruisecautions = database.firstAid.bruise.list[0].cautions;
+      sendTextMessage(senderID, bruisecontent, function(){
+				sendTextMessage(senderID, bruisecautions, null);
+			});
       break;
-    case 'diarrhea':
-        sendTextMessage(senderID, 'diarrhea');
-        break;
+    case 'burns':
+        selectfirsAidType(senderID, 'burns');
+				break;
+				case 'returnedBlisters':
+					sendTextMessage(senderID, burnscontent, function(){
+						sendTextMessage(senderID, burnscautions, null);
+					});
+					break;
+				case 'returnedNoBlisters':
+					sendTextMessage(senderID, burnscontent, function(){
+						sendTextMessage(senderID, burnscautions, null);
+					});
+					break;
+				case 'returnedDeepBurn':
+				sendTextMessage(senderID, burnscontent, function(){
+						sendTextMessage(senderID, burnscautions, null);
+					});
+					break;
+		case 'sexinjury':
+			selectfirsAidType(senderID, 'sexinjury')
+			break;
+			case 'returnedVaginalTearing':
+				sendTextMessage(senderID, sexcontent, function(){
+						sendTextMessage(senderID, sexcautions, null);
+				});
+				break;
+			case 'returnedCarpetBurn':
+				sendTextMessage(senderID, sexcontent, function(){
+						sendTextMessage(senderID, sexcautions, null);
+				});
+				break;
+			case 'returnedPullMuscle':
+				sendTextMessage(senderID, sexcontent, function(){
+						sendTextMessage(senderID, sexcautions, null);
+				});
+				break;
+		case 'sprain':
+			sendTextMessage(senderID, spraincontent, function(){
+				sendTextMessage(senderID, spraincautions, null);
+			});
+			break;
+		case 'poisoning':
+			selectfirsAidType(senderID, 'poisoning');
+			break;
+			case 'returnedConcious':
+				sendTextMessage(senderID, poisoncontent, function(){
+					sendTextMessage(senderID, poisoncautions, null);
+				});
+				break;
+			case 'returnedUnconcious':
+				sendTextMessage(senderID, poisoncontent, function(){
+					sendTextMessage(senderID, poisoncautions, null);
+				});
+				break;
+		case 'choking':
+			sendTextMessage(senderID, chokecontent, function(){
+				sendTextMessage(senderID, chokecautions, null);
+			});
+			break;
+		case 'diarrhea':
+			sendTextMessage(senderID, diarrheacontent, function(){
+				sendTextMessage(senderID, diarrheacautions, null)
+			})
+			break;
+		case 'bites':
+			selectfirsAidType(senderID, 'bites');
+			break;
+			case 'returnedMammals':
+				sendTextMessage(senderID, bitescontent, function(){
+					sendTextMessage(senderID, bitescautions, null);
+				});
+				break;
+			case 'returnedInsects':
+				sendTextMessage(senderID, bitescontent, function(){
+					sendTextMessage(senderID, bitescautions, null);
+				});
+				break;
   }
 }
 
@@ -204,7 +296,7 @@ function receivedPostback(event) {
 		switch(payload){
 			case 'Get Started':
 				getUserProfile(senderID);
-				var msg = `Hello ${userProfile.first_name}! welcome to Aidah Care.`;
+				var msg = `Hello ${userProfile.first_name}! welcome to Aidah Care. I can help you with any first aid issues`;
 					sendTextMessage(senderID, msg, function(){
 						beginDialog(senderID);
 					});
@@ -261,17 +353,16 @@ function sendQuickReply(recipientID, text, quickReplies,callback){
 function beginDialog(recipientID){
      var qrArray = [];
 		 quickReplies(qrArray, 'Cuts', 'cuts');
-     quickReplies(qrArray, 'Bruise', 'bruise_cuts');
+     quickReplies(qrArray, 'Bruise', 'bruise');
      quickReplies(qrArray, 'Burns', 'burns');
-     quickReplies(qrArray, 'Bites & Stings', 'bites&stings');
+     quickReplies(qrArray, 'Bites & Stings', 'bites');
      quickReplies(qrArray, 'Choking', 'choking');
      quickReplies(qrArray, 'Diarrhea', 'diarrhea');
      quickReplies(qrArray, 'Poisoning', 'poisoning');
-     quickReplies(qrArray, 'Scalds', 'scalds');
      quickReplies(qrArray, 'Sex Injury', 'sexinjury');
      quickReplies(qrArray, 'Sprain', 'sprain');
 
-     var text = 'Kindly choose from below to continue. Please type begin to start over';
+     var text = 'Kindly choose from below to continue. Please type begin to choose different option';
      sendQuickReply(recipientID, text, qrArray);
  }
 
@@ -281,7 +372,7 @@ function selectfirsAidType(senderID, payload){
      for(var i=0; i<arr.length; i++){
          quickReplies(qrArray, arr[i].title, arr[i].payload);
      }
-     var text = 'what is the situation?';
+     var text = 'what is the problem?';
      sendQuickReply(senderID, text, qrArray);
  }
 

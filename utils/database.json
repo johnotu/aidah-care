@@ -60,23 +60,23 @@
                     "title": "Vaginal Tearing",
                     "content": "Vaginal tearing: Happens when the vagina is too dry during sex. It usually heals on its own but to prevent it, use lubricants before the act. If it keeps bleeding, seek medical attention. \n Stuck condom: Happens when a condom is stuck in the vagina. The best course of action is to wait for 10 to 15 minutes after sex, then use two fingers to fish out the item. If you are unable to get it out, seek the services of a doctor.",
                     "cautions": "Do not use any other thing apart from your fingers to try to get it out.",
-                    "payload": ""
+                    "payload": "returnedVaginalTearing"
                 },
                 {
                     "title": "Carpet Burn",
                     "content": "Carpet burns: \nHappens when the knee or elbow is scrapped while having sex on the floor. \n1.    Wash infected area with cool water and antibacterial soap \n2.    Apply an anti-bacterial cream \n3.    Cover lightly with a bandage",
-                    "cautions": "",
-                    "payload": ""
+                    "cautions": "Do not use any other thing apart from your fingers to try to get it out.",
+                    "payload": "returnedCarpetBurn"
                 },
                 {
                     "title": "Pull Muscle",
                     "content": "Pulled muscles: \nQuite common and usually caused by endorphins released during sex. \n1.    Take an over-the-counter anti-inflammatory drug \n2.    Elevate the affected part if possible \n3.    Apply cold compress to reduce the swelling \n4.    Seek medical attention if condition does not improve after 2 days",
-                    "cautions": "",
-                    "payload": ""
+                    "cautions": "Do not use any other thing apart from your fingers to try to get it out.",
+                    "payload": "returnedPullMuscle"
                 }
             ]
         },
-        "sprain&strain": {
+        "sprain": {
             "list": [
                 {
                     "title": "",
@@ -92,7 +92,7 @@
                     "title": "Concious",
                     "content": "",
                     "cautions": "",
-                    "payload": ""
+                    "payload": "returnedConcious"
                 },
                 {
                     "title": "Unconcious",
@@ -112,22 +112,6 @@
                 }
             ]
         },
-				"scalds":{
-						"list": [
-								{
-										"title": "",
-										"content": "",
-										"cautions": "",
-                    "payload": ""
-								},
-								{
-										"title": "",
-										"content": "",
-										"cautions": "",
-                    "payload": ""
-								}
-						]
-				},
 				"diarrhea":{
 						"list": [
 								{
@@ -138,7 +122,7 @@
 								}
 						]
 				},
-				"bites&stings":{
+				"bites":{
 						"list": [
 								{
 										"title": "Mammals",
